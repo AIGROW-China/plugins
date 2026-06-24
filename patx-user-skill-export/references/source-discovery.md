@@ -28,6 +28,20 @@ Check paths that exist on the user's machine. Do not fail if a path is missing.
 
 When the user provides extra paths, include them after confirming they are intended for scanning.
 
+## Self-Export Exclusion
+
+Never treat this exporter skill, an installed copy of it, or an unpacked resource package for it as a source candidate. Skip it before scoring and do not list it in the candidate table, even if its text contains strong patent terms.
+
+Skip a directory or file group when any of these signals identify the source itself as the PatX exporter rather than a patent business workflow:
+
+- directory basename is `patx-user-skill-export` or `patx-user-skill-exporter`;
+- `SKILL.md` frontmatter has `name: patx-user-skill-export`;
+- display name or heading is `PatX User Skill Export`;
+- the content is centered on `patx-user-skill-import-v1`, PatX import JSON schema, exporter installation, candidate scanning, or local JSON validation;
+- the directory contains exporter support files such as `assets/patx_user_skill_import_schema_v1.json` or `scripts/validate_import_json.py`.
+
+This exclusion applies under `~/.codex/skills`, `~/.agents/skills`, plugin directories, OSS resource-package extracts, and user-provided broad scan roots. If the user explicitly gives this exporter path as the source, explain that it is the export tool itself and ask for the patent workflow skill or materials to convert.
+
 ## File Types to Scan
 
 Prefer text files likely to describe skills. Classify Markdown-like files first because they usually contain the main prompt:
