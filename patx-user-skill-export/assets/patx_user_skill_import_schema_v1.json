@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://patx.local/schemas/patx_user_skill_import_schema_v1.json",
+  "title": "PatX User Skill Import v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skills"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "patx-user-skill-import-v1"
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/skill"
+      }
+    }
+  },
+  "$defs": {
+    "skill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skill_key",
+        "name",
+        "description",
+        "tags",
+        "readme_content",
+        "items"
+      ],
+      "properties": {
+        "skill_key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "tags": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          }
+        },
+        "readme_content": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 200,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_key",
+        "parent_node_key",
+        "item_type",
+        "name",
+        "content",
+        "order"
+      ],
+      "properties": {
+        "node_key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "parent_node_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "item_type": {
+          "enum": [
+            "folder",
+            "content"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "content": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 20000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "$comment": "Cross-item parent/child constraints are validated outside JSON Schema: folder.parent_node_key must be null; content.parent_node_key may be null or point to a folder."
+    }
+  },
+  "$comment": "PatX tree semantics: folders are top-level only; content items may be top-level or direct children of folders; folders cannot contain folders. Enforce with validate_import_json.py or platform import validation."
+}
