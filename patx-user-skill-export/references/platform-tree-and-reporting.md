@@ -84,7 +84,7 @@ After export, provide a concise report. Usually include only:
 - validation result;
 - major preserved content groups;
 - important removed unsafe, non-patent, or unsupported content;
-- important lossy conversions, especially scripts/tools/API/file generation that became text rules or were discarded.
+- important lossy conversions, especially scripts/tools/API/file generation that became text rules, PatX-native tool reminders, or were discarded.
 
 Keep the report short. Expand only when there is a material risk that the converted PatX skill behaves differently from the source.
 
@@ -95,7 +95,7 @@ Suggested format:
 - 已转换：<skill name>
 - 校验：VALID / INVALID: <reason>
 - 保留：主提示词、核心流程、输出模板、质量检查
-- 调整：脚本校验逻辑已转为文字检查清单
+- 调整：脚本校验逻辑已转为文字检查清单；可由 PatX 原生工具承接的自动化已转为工具使用提醒
 - 舍弃：安装命令、缓存文件、无关广告内容
-- 注意：原技能的自动文件生成能力在 PatX 中不可执行
+- 注意：原技能的本地脚本不会在 PatX 中执行；如需生成可保存文本，应按技能提醒使用 write 等 PatX 原生工具
 ```

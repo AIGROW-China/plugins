@@ -1,6 +1,6 @@
 # Conversion Strategy
 
-The conversion goal is to preserve the source skill's patent business capability, not its engineering implementation. Preserve original Markdown prompts as much as possible and adapt only what PatX text-only skills require.
+The conversion goal is to preserve the source skill's patent business capability, not its engineering implementation. Preserve original Markdown prompts as much as possible and adapt only what PatX text-only skills require. When the source skill used scripts or agent tooling for a capability that PatX already provides through native tools, preserve the capability as natural-language guidance that reminds the PatX Agent to use those tools.
 
 ## Conversion Order
 
@@ -22,7 +22,7 @@ Allowed adaptations:
 
 - remove YAML frontmatter;
 - remove or rewrite file-path references into PatX content item names;
-- remove unsupported tool/script execution promises;
+- remove unsupported tool/script execution promises, or convert them into PatX-native tool-use reminders when the tool intent is supported;
 - remove installation, environment, and development-only instructions;
 - remove unsafe, advertising, non-patent, or unrelated content;
 - add short reading navigation that explains mandatory and conditional content;
@@ -38,6 +38,46 @@ Do not casually change:
 - customer style rules;
 - missing-information questions;
 - prohibitions and risk-control rules.
+
+## PatX-Native Tool Reminders
+
+Do not export structured tool schemas or implementation details. A PatX skill can still tell the Agent how to work with platform-native tools in plain language.
+
+Use this pattern when converting source automation:
+
+1. Identify the user's business intent behind the script or tool instruction.
+2. Remove the source implementation mechanics: commands, imports, local file writes, endpoints, credentials, browser steps, model names, and runtime assumptions.
+3. If a PatX-native tool covers the intent, add a concise reminder in the relevant workflow or checklist section.
+4. If no PatX-native tool covers it, convert to a manual checklist/template or report it as a lossy conversion.
+
+Common mappings:
+
+- parallel exploration or independent review -> `agent` / 小寻分身;
+- complex multi-perspective reasoning -> `meeting` / 专家会议;
+- length or word-count checking -> `count`;
+- user clarification or choice -> `question`;
+- saved text deliverables or Word-like drafts -> `write`;
+- existing document edits -> read first, then `edit`;
+- search or consistency checks -> `read`, `grep`, `ls`;
+- patent figure drawing or SVG editing -> `edit_figure`;
+- generated reference images for figures -> `generate_image`;
+- image understanding -> `read_image`.
+
+Good exported wording:
+
+```markdown
+如需并行比对多个实施例，应派出小寻分身分别核查，再汇总差异。
+如需统计摘要篇幅，应使用字数统计工具，不得凭估算判断。
+如需绘制或修改专利附图，应使用 edit_figure，并遵守附图规范。
+```
+
+Avoid exported wording that promises execution of the original implementation:
+
+```markdown
+运行 scripts/count_words.py 统计字数。
+调用外部检索 API 自动获取现有技术。
+执行 docx 生成脚本并导出 Word 文件。
+```
 
 ## Mandatory vs Conditional Content
 
