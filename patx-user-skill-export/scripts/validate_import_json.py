@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate PatX user skill import JSON using only the Python standard library."""
+"""Validate PatX user skill import package content using only the Python standard library."""
 
 from __future__ import annotations
 
@@ -164,7 +164,7 @@ def validate(data: Any) -> None:
 
 def main(argv: list[str]) -> int:
     if len(argv) != 2:
-        print("INVALID: usage: validate_import_json.py <path>")
+        print("INVALID: usage: validate_import_json.py <patx-path>")
         return 2
 
     try:

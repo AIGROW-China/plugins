@@ -44,27 +44,27 @@ Use top-level content for core mandatory rules. Use folders only to group multip
 
 ## Final Success Response
 
-After the JSON file has been written, respond with a clearly successful, action-oriented message. Use the success banner only when the JSON file was generated and either validated successfully or local Python validation is unavailable. If validation fails, do not use the success banner; report the error and fix or ask for correction.
+After the `.patx` file has been written, respond with a clearly successful, action-oriented message. Use the success banner only when the `.patx` package was generated and either validated successfully or local Python validation is unavailable. If validation fails, do not use the success banner; report the error and fix or ask for correction.
 
 The final response must include:
 
 - a first line with `✅`;
-- the absolute JSON file path;
+- the absolute `.patx` file path;
 - validation result;
-- concise upload guidance telling the user to return to PatX, upload the JSON in the import dialog, review the preview list, and click confirm import;
+- concise upload guidance telling the user to return to PatX, upload the `.patx` package in the import dialog, review the preview list, and click confirm import;
 - a brief conversion report.
 
 Suggested final format:
 
 ```markdown
-✅ 已为你生成 PatX 技能导入 JSON
+✅ 已为你生成 PatX 技能包
 
-JSON 文件：`<absolute-json-path>`
+.patx 文件：`<absolute-patx-path>`
 校验：`VALID` / `未运行本地校验：Python 不可用，请以 PatX 页面预览校验为准`
 
 下一步：
 1. 回到 PatX 系统的【导入技能】弹窗。
-2. 上传上面的 JSON 文件。
+2. 上传上面的 `.patx` 文件。
 3. 在预览列表中检查技能名称、描述、标签和节点内容。
 4. 确认无误后点击【确认导入】。
 

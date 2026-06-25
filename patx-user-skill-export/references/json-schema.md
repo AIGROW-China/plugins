@@ -1,8 +1,8 @@
-# PatX Import JSON Schema
+# PatX Import Package Schema
 
-The exporter produces JSON with `schema_version` equal to `patx-user-skill-import-v1`.
+The exporter produces a `.patx` file. The file content is UTF-8 JSON with `schema_version` equal to `patx-user-skill-import-v1`.
 
-Use `assets/patx_user_skill_import_schema_v1.json` as the JSON Schema and `scripts/validate_import_json.py` for structural validation that includes PatX tree semantics.
+Use `assets/patx_user_skill_import_schema_v1.json` as the content schema and `scripts/validate_import_json.py` for structural validation that includes PatX tree semantics.
 
 ## Root Object
 

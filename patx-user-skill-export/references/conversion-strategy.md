@@ -12,7 +12,7 @@ The conversion goal is to preserve the source skill's patent business capability
 3. Classify non-Markdown files by purpose using `non-md-content-handling.md`.
 4. Convert the main Markdown prompt first. Non-Markdown content may supplement it but must not rewrite or override it.
 5. Restructure into PatX `readme_content` plus `items` using `platform-tree-and-reporting.md`.
-6. Produce a brief conversion report only outside the skill JSON.
+6. Produce a brief conversion report only outside the `.patx` package.
 
 ## Markdown-First Preservation
 

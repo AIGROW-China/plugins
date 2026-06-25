@@ -20,12 +20,12 @@ Mixed-domain sources may be converted only by extracting the patent-related part
 
 ## Exporter and Meta-Skill Exclusion
 
-Reject exporter, converter, scanner, validator, installer, or migration meta-skills whose primary task is to create PatX import JSON or move other skills into PatX. This is a hard exclusion before scoring. Patent terms inside these tools describe the migration target, not a reusable patent business workflow.
+Reject exporter, converter, scanner, validator, installer, or migration meta-skills whose primary task is to create PatX import packages (`.patx`) or move other skills into PatX. This is a hard exclusion before scoring. Patent terms inside these tools describe the migration target, not a reusable patent business workflow.
 
 Exclude sources with any of these signals:
 
 - frontmatter `name: patx-user-skill-export`, display name `PatX User Skill Export`, or path ending in `patx-user-skill-export` / `patx-user-skill-exporter`;
-- primary content about `patx-user-skill-import-v1`, PatX JSON schema, JSON validation scripts, candidate tables, OSS resource packages, install passphrases, or broad local skill scanning;
+- primary content about `patx-user-skill-import-v1`, PatX `.patx` packages, JSON content schema, validation scripts, candidate tables, OSS resource packages, install passphrases, or broad local skill scanning;
 - instructions whose main job is to export, convert, migrate, package, or validate skills/prompts/rules for PatX rather than perform patent drafting, OA response, examination, search, analysis, or quality review.
 
 Do not keep these as `partially converted` candidates. If a real patent workflow source contains a small import/export note, remove that note and keep only the patent workflow content.
@@ -146,4 +146,4 @@ Before export from broad scans, show candidates with:
 - `conversion expectation`: likely preserved, partially converted, or likely lossy.
 - `preview`: short content summary or first relevant excerpt.
 
-Wait for explicit user confirmation before generating JSON from broad scans.
+Wait for explicit user confirmation before generating `.patx` packages from broad scans.
